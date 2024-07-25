@@ -23,14 +23,14 @@ jobs:
 
       - name: Update and Upgrade Server
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@your-server-ip << 'EOF'
+          ssh -o StrictHostKeyChecking=no ubuntu@54.198.161.239 << 'EOF'
           sudo apt-get update -y
           sudo apt-get upgrade -y
           EOF
 
       - name: Install OpenCPU Server
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@your-server-ip << 'EOF'
+          ssh -o StrictHostKeyChecking=no ubuntu@54.198.161.239 << 'EOF'
           sudo add-apt-repository ppa:opencpu/opencpu-2.2 -y
           sudo apt-get update
           sudo apt-get install -y opencpu-server
@@ -38,14 +38,14 @@ jobs:
 
       - name: Configure SSL Certificates
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@your-server-ip << 'EOF'
+          ssh -o StrictHostKeyChecking=no ubuntu@54.198.161.239 << 'EOF'
           sudo apt-get install -y certbot python3-certbot-apache
-          sudo certbot --apache -n --agree-tos --email your_email@example.com --redirect --no-eff-email -d your-server-domain
+          sudo certbot --apache -n --agree-tos --email matheusmrech2@icloud.com --redirect --no-eff-email -d matheusrechmd.com
           EOF
 
       - name: Configure OpenCPU
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@your-server-ip << 'EOF'
+          ssh -o StrictHostKeyChecking=no ubuntu@54.198.161.239 << 'EOF'
           echo '{
             "httpcache.post": 300,
             "preload": ["ggplot2", "dplyr"],
@@ -59,12 +59,12 @@ jobs:
 
       - name: Verify Installation
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@your-server-ip << 'EOF'
+          ssh -o StrictHostKeyChecking=no ubuntu@54.198.161.239 << 'EOF'
           curl -f http://localhost/ocpu/info
           EOF
 
       - name: Install R Packages
         run: |
-          ssh -o StrictHostKeyChecking=no ubuntu@your-server-ip << 'EOF'
+          ssh -o StrictHostKeyChecking=no ubuntu@54.198.161.239 << 'EOF'
           sudo R -e "install.packages(c('ggplot2', 'dplyr'))"
           EOF
